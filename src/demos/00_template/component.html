@@ -15,16 +15,18 @@
     <div id="container"></div>
 
     <script type="text/babel">
-        var BrantsComponent = React.createClass({ render: function() { return (
+        var Note = React.createClass({ edit: function(){ alert('edit comment'); }, remove: function () { alert('remove comment'); }, render: function() { return (
         <div>
-            <h2>This is my header</h2>
+            <h2>{this.props.children}</h2>
             <p>This is my paragraph</p>
+            <button onClick={this.edit}>Edit</button>
+            <button onClick={this.remove}>Remove</button>
         </div>
         ); } }); ReactDOM.render(
         <div>
-            <BrantsComponent />
-            <BrantsComponent />
-            <BrantsComponent />
+            <Note>Hi</Note>
+            <Note>How</Note>
+            <Note>are you</Note>
         </div>, document.getElementById('container'));
     </script>
 
