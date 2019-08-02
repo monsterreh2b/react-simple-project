@@ -15,14 +15,21 @@
     <div id="container"></div>
 
     <script type="text/babel">
-        var Note = React.createClass({ edit: function(){ alert('edit comment'); }, remove: function () { alert('remove comment'); }, render: function() { return (
+        var Note = React.createClass({ getInitialState: function(){ return{editing:false}; }, edit: function(){ this.setState({editing: true}); }, remove: function () { alert('removing comment...'); }, save: function(){ this.setState({editing: false}); }, renderNormal:function(){
+        return (
         <div>
             <h2>{this.props.children}</h2>
             <p>This is my paragraph</p>
             <button onClick={this.edit}>Edit</button>
             <button onClick={this.remove}>Remove</button>
         </div>
-        ); } }); ReactDOM.render(
+        ); }, renderForm: function(){ return (
+        <div>
+            <textarea defaultValue={this.props.children}></textarea>
+            <button onClick={this.save}>Save</button>
+
+        </div>
+        ); }, render: function() { if (this.state.editing){ return this.renderForm(); }else{ return this.renderNormal(); } } }); ReactDOM.render(
         <div>
             <Note>Hi</Note>
             <Note>How</Note>
