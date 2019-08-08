@@ -15,8 +15,8 @@
     <div id="container"></div>
 
     <script type="text/babel">
-        var Note = React.createClass({ getInitialState: function(){ return{editing:false}; }, edit: function(){ this.setState({editing: true}); }, remove: function () { alert('removing comment...'); }, save: function(){ this.setState({editing: false}); }, renderNormal:function(){
-        return (
+        var Note = React.createClass({ getInitialState: function(){ return{editing:false}; }, edit: function(){ this.setState({editing: true}); }, remove: function () { alert('removing comment...'); }, save: function(){ var val = this.refs.newText.value; console.log('comment:'
+        + val); this.setState({editing:false}); }, renderNormal:function(){ return (
         <div>
             <h2>{this.props.children}</h2>
             <p>This is my paragraph</p>
@@ -25,7 +25,7 @@
         </div>
         ); }, renderForm: function(){ return (
         <div>
-            <textarea defaultValue={this.props.children}></textarea>
+            <textarea ref="newText" defaultValue={this.props.children}></textarea>
             <button onClick={this.save}>Save</button>
 
         </div>
